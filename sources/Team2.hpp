@@ -8,9 +8,8 @@ namespace ariel
         public:
             Team2(Character* leader):Team(leader){} 
             void attack(Team* enemy)override;
-            size_t stillAlive()const override;
-            double the_enemy_distance(Team* enemy)override;
-            Character** the_victim(Team* enemy)override;// always return the victims and if not have return null.
+            int stillAlive()const override;
+            Character* the_victim(Team* enemy)override;
             void print()const override;
 
     };

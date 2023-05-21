@@ -13,14 +13,16 @@ namespace ariel
             bool have_a_team;
 
         public:
+        //
             Character(const Point& index, int hit, string name);
             Character(const Character& other);
             Character& operator=(const Character& other);
             Character(Character&& other) noexcept;
             Character& operator=(Character&& other) noexcept;
             virtual ~Character() {}
+        //
             bool isAlive()const{return (hit_count > 0);}
-            double distance(const Character* other)const{return index.distance(other->index);}
+            double distance(const Character* other)const;
             void hit(int value);
             int getHit()const{return hit_count;}
             string getName()const{return name;}

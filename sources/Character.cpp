@@ -48,4 +48,17 @@ void Character::hit(int value)
     {
         hit_count-=value;
     }
+
+    if(hit_count < 0)
+    {
+        hit_count = 0;
+    }
+}
+
+double Character::distance(const Character *other) const {
+	if (other == nullptr)
+	{
+		throw invalid_argument("Invalid pointer to Character.");
+	}
+	return index.distance(other->index);
 }

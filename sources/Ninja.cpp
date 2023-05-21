@@ -13,20 +13,36 @@ Ninja::Ninja(const Point& point, int hit, string name, int speed):Character(poin
 
 void Ninja::move(const Character * enemy)
 {
+    if (enemy == nullptr)
+		throw invalid_argument("the enemy character is null!");
+
+	if (enemy == this)
+		throw invalid_argument("can't move to yourself!");
+
+	if (!isAlive())
+		throw runtime_error("can't move while dead!");
     if(!enemy->isAlive())
     {
-        throw runtime_error("The enemy is dead.");
+        throw runtime_error("the enemy is dead.");
     }
+    
     this->setLocation(Point::moveTowards(this->getLocation(), enemy->getLocation(), speed));
 }
 
 void Ninja::slash(Character * enemy)const
 {
-    if(!enemy->isAlive())
-    {
-        throw runtime_error("The enemy is dead.");
-    }
-    if(isAlive() && (getLocation().distance(enemy->getLocation()) <= 1.0))////////////////
+	if (enemy == nullptr)
+		throw invalid_argument("Other character is null!");
+
+	if (enemy == this)
+		throw runtime_error("Cannot slash yourself!");
+
+	if (!isAlive())
+		throw runtime_error("Cannot slash while dead!");
+
+	if (!enemy->isAlive())
+		throw runtime_error("Cannot slash a dead character!");
+    if((getLocation().distance(enemy->getLocation()) <= 1.0))
     {
         enemy->hit(40);
     }

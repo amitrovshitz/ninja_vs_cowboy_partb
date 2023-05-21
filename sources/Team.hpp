@@ -3,7 +3,7 @@
 #include "YoungNinja.hpp"
 #include "TrainedNinja.hpp"
 #include "OldNinja.hpp"
-#include <array>
+#include <vector>
 
 using namespace std;
 namespace ariel
@@ -11,10 +11,9 @@ namespace ariel
     class Team
     {
         private:
-            static const int SIZE = 10;
-            std::array<Character*, SIZE> team;
+            std::vector<Character *> team;
             Character* leader; 
-            size_t size;
+
 
         public:
             Team(Character* leader);
@@ -23,14 +22,16 @@ namespace ariel
             Team& operator=(const Team& other);
             Team(Team&& other) noexcept;
             Team& operator=(Team&& other) noexcept;
-            size_t getSize()const{return size;}
-            void add(Character* some);// the same player in 2 group.
+            const std::vector<Character *> getTeam() const {
+				return team; 
+			}
+            void add(Character* some);
             virtual void attack(Team* enemy);
-            virtual size_t stillAlive()const;
+            virtual int stillAlive()const;
             void new_leader();
-            virtual double the_enemy_distance(Team* enemy);
-            virtual Character** the_victim(Team* enemy);// always return the victims and if not have return null.
+            void setLeader(Character* the_new_leader){leader = the_new_leader;}
+            Character* getLeader()const{return leader;}
+            virtual Character* the_victim(Team* enemy);
             virtual void print()const;
     };
 }
-//////////////////////chrck the casting////////////////////////////

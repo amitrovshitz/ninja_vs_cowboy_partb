@@ -20,62 +20,23 @@ namespace ariel
             double distance(Point other)const;
             string print()const;
             static Point moveTowards(const Point source, const Point destination, double distance)
-            {///check this function.
-                if(distance< 0.0)
+            {
+                if(distance < 0)
                 {
-                    throw invalid_argument("the distance is always positive.");
+                    throw invalid_argument("the distance cant be negative.");
                 }
-                double dist = pow((destination.getX()-source.getX()),2) + pow((destination.getY()-source.getY()),2); 
-                if (dist <= distance)
-                {
-                    return destination;
-                } 
-                
-                
-                if(source.getX() == destination.getX())
-                {
-                    if(source.getY() > destination.getY())
-                    {
-                        return Point(source.getX(), source.getY()-distance);
-                    }
-                            
-                    return Point(source.getX(), source.getY()+distance);
-                        
-                }
-                if(source.getY() == destination.getY())
-                {
-                    if(source.getX() > destination.getX())
-                    {
-                        return Point(source.getX()-distance, source.getY());
-                    }
-                        
-                    return Point(source.getX()+distance, source.getY());   
-                }
-                    
-                    
-                double the_m = (source.getY()-destination.getY())/(source.getX()-destination.getX());
-                double the_x1 = ((2*source.getX()) + sqrt((pow(distance,2))/(1+pow(the_m,2))))/2;
-                double the_x2 = ((2*source.getX()) - sqrt((pow(distance,2))/(1+pow(the_m,2))))/2;
-                double the_y1 = the_m*(the_x1-source.getX())+source.getY();
-                double the_y2 = the_m*(the_x2-source.getX())+source.getY();
-                if(source.getX() > destination.getX())
-                {
-                    if(source.getX() > the_x1)
-                    {
-                        return Point(the_x1, the_y1);
-                    }
-                    return Point(the_x2, the_y2);
-                }
+                double dx = destination.the_x - source.the_x;
+                double dy = destination.the_y - source.the_y;
+                double dist = sqrt(dx * dx + dy * dy);
 
-                        
-                        
-                if(source.getX() < the_x1)
-                {
-                    return Point(the_x1, the_y1);
+                if (dist <= distance) {
+                    return destination;
                 }
-                return Point(the_x2, the_y2);    
+                
+                double ratio = distance / dist;
+                double new_x = source.the_x + (dx * ratio);
+                double new_y = source.the_y + (dy * ratio);
+                return Point(new_x, new_y);
             }
-        
-        
     };
 }
