@@ -67,7 +67,7 @@ Character *SmartTeam::the_victim_for_ninja(Team *enemies, Character *the_ninja) 
 			}
 			else if(enemy->getHit() > 40)
 			{
-				if(enemy->getHit() > temp_big_from_40)
+				if((temp_big_from_40 != 0) && (enemy->getHit() < temp_big_from_40))
 				{
 					temp_big_from_40 = enemy->getHit();
 					the_enemy = enemy;
