@@ -13,8 +13,6 @@ namespace ariel
         private:
             std::vector<Character *> team;
             Character* leader; 
-
-
         public:
             Team(Character* leader);
             virtual ~Team();
@@ -22,7 +20,7 @@ namespace ariel
             Team& operator=(const Team& other);
             Team(Team&& other) noexcept;
             Team& operator=(Team&& other) noexcept;
-            const std::vector<Character *> getTeam() const {
+            std::vector<Character *> getTeam() const {
 				return team; 
 			}
             void add(Character* some);

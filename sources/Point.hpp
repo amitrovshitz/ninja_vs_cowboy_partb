@@ -25,17 +25,17 @@ namespace ariel
                 {
                     throw invalid_argument("the distance cant be negative.");
                 }
-                double dx = destination.the_x - source.the_x;
-                double dy = destination.the_y - source.the_y;
-                double dist = sqrt(dx * dx + dy * dy);
+                double the_dx = destination.the_x - source.the_x;
+                double the_dy = destination.the_y - source.the_y;
+                double dist = sqrt(the_dx * the_dx + the_dy * the_dy);
 
                 if (dist <= distance) {
                     return destination;
                 }
                 
                 double ratio = distance / dist;
-                double new_x = source.the_x + (dx * ratio);
-                double new_y = source.the_y + (dy * ratio);
+                double new_x = source.the_x + (the_dx * ratio);
+                double new_y = source.the_y + (the_dy * ratio);
                 return Point(new_x, new_y);
             }
     };

@@ -232,7 +232,7 @@ Character* Team::the_victim(Team* enemy)
         return nullptr;
     }
     
-    double min_distance = numeric_limits<double>::max();; 
+    double min_distance = numeric_limits<double>::max();
     Character* victim = nullptr;
     for (Character *fighter : enemy->team)
 	{
